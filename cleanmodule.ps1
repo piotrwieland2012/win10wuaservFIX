@@ -15,6 +15,8 @@
 ## You can find it here: https://www.oo-software.com/en/shutup10
 ##
 
+if (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { Start-Process powershell.exe "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs; exit }
+
 New-PSDrive -Name HKCR -PSProvider Registry -Root HKEY_CLASSES_ROOT
 
 Write-Host 'Updating registry settings...'
